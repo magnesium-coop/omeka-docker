@@ -32,9 +32,11 @@ RUN curl -J -L -s -k \
 &&  mv /var/www/omeka-2.7 /var/www/html \
 &&  chown -R www-data:www-data /var/www/html
 
-COPY ./db.ini /var/www/html/db.ini
-COPY ./.htaccess /var/www/html/.htaccess
-COPY ./imagemagick-policy.xml /etc/ImageMagick/policy.xml
+COPY ./config/db.ini /var/www/html/db.ini
+COPY ./config/.htaccess /var/www/html/.htaccess
+COPY ./config/imagemagick-policy.xml /etc/ImageMagick/policy.xml
+COPY ./config/config.ini /var/www/html/application/config/config.ini
+COPY ./config/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 
 VOLUME /var/www/html
 
