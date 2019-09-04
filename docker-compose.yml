@@ -19,10 +19,10 @@ services:
       - "8080:80"
 
   omeka:
+    image: 270051160229.dkr.ecr.us-east-1.amazonaws.com/nickel
     depends_on:
       - db
     build: ./
-    image: klokantech/omeka
     ports:
       - "80:80"
     restart: always
