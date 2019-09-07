@@ -17,6 +17,8 @@ services:
         - "traefik.frontend.passHostHeader=true"
       restart_policy:
         condition: on-failure
+    volumes:
+      - omeka_nickel_files_vol:/var/www/html/files
 
   omeka_db:
     image: mysql:5.7
@@ -30,6 +32,12 @@ services:
       MYSQL_DATABASE: omeka_nickel
       MYSQL_USER: omeka
       MYSQL_PASSWORD: omeka
+    volumes:
+      - omeka_nickel_mysql_vol:/var/lib/mysql
+
+volumes:
+  omeka_nickel_files_vol:
+  omeka_nickel_mysql_vol:
  
 networks:
   traefik_proxy:

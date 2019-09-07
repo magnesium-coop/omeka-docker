@@ -1,12 +1,12 @@
 version: '2'
 
 services:
-  db:
+  omeka_db:
     image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: omeka
-      MYSQL_DATABASE: omeka
+      MYSQL_DATABASE: omeka_nickel
       MYSQL_USER: omeka
       MYSQL_PASSWORD: omeka
 
@@ -14,14 +14,15 @@ services:
     image: phpmyadmin/phpmyadmin
     restart: always
     links:
-     - db:db
+     - omeka_db:db
     ports:
       - "8080:80"
 
   omeka:
     image: 270051160229.dkr.ecr.us-east-1.amazonaws.com/nickel
+    build: ./
     depends_on:
-      - db
+      - omeka_db
     build: ./
     ports:
       - "80:80"

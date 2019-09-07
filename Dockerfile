@@ -32,6 +32,14 @@ RUN curl -J -L -s -k \
 &&  mv /var/www/omeka-2.7 /var/www/html \
 &&  chown -R www-data:www-data /var/www/html
 
+COPY ./plugins/*.zip /var/www/html/plugins/
+RUN unzip /var/www/html/plugins/AdminImages.zip -d /var/www/html/plugins/
+RUN unzip /var/www/html/plugins/CollectionTree-2.1.zip -d /var/www/html/plugins/
+RUN unzip /var/www/html/plugins/OmekaApiImport.zip -d /var/www/html/plugins/
+RUN unzip /var/www/html/plugins/ItemRelations-2.1.zip -d /var/www/html/plugins/
+RUN unzip /var/www/html/plugins/ShortcodeCarousel-1.0.1.zip -d /var/www/html/plugins/
+
+
 COPY ./config/db.ini /var/www/html/db.ini
 COPY ./config/.htaccess /var/www/html/.htaccess
 COPY ./config/imagemagick-policy.xml /etc/ImageMagick/policy.xml
